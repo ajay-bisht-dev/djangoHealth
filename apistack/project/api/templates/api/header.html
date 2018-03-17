@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>{% block title %}{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'api/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'api/css/style.scss' %}">
+    <link href='http://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=EB+Garamond' rel='stylesheet' type='text/css'>
+    <script>
+        var jurl = "{% static 'api/js/us-county-geo5.json' %}";
+    </script>
+    {% block head %}{% endblock %}
+</head>
+<body class="body">
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+    <script src="{% static 'api/js/jquery-3.2.1.slim.min.js' %}" ></script>
+    <script src="{% static 'api/js/popper.min.js'  %}" ></script>
+    <script src="{% static 'api/js/bootstrap.min.js' %}"></script>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="//d3js.org/topojson.v1.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.js"></script> -->
+    <script src="{% static 'api/js/d3-tip-alt.js' %}"></script>
+    <script src="https://d3js.org/queue.v1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.2/TweenMax.min.js"></script>
+    <script src="{% static 'api/js/script-bubble.js' %}"></script>
+</body>
+</html>

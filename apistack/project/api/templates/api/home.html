@@ -1,0 +1,24 @@
+{% extends "api/header.html"  %}
+
+{% block title %}
+    HealthCC - Dashboard
+{% endblock %}
+
+
+{% block content %}
+<h3>Dashboard</h3>
+<section id="intro">
+    <h1>Craft Breweries in America</h1>
+    <h2>Data from the Brewers Association shows where the breweries are</h2>
+</section>
+<div id="legend">
+    <p>Vermont: 6.4 breweries per capita</p>
+    <p>Montana: .2 breweries per capita</p>  
+</div>
+<div id="map"></div>
+<div id="footer">
+    <p>Sources: Brewery data from the
+    <a href="https://www.brewersassociation.org/statistics/by-state/" target="_blank">Brewers' Association - 2015</a>. Map created by: <a href="https://codepen.io/adg29/pen/wapwOz" target="_blank">Alan David Garcia</a>. Style and animation by <a href="www.twitter.com/justinhilltweet">Justin Hill</a>.
+    </p>
+</div>
+{% endblock %}
