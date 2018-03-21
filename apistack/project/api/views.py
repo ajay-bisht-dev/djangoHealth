@@ -8,10 +8,11 @@ from rest_framework.renderers import JSONRenderer
 from django.contrib.auth.models import User
 from rest_framework import viewsets
 from project.api.serializers import UserSerializer
+from django.db.models import Count
 
 from rest_framework import generics
-from project.api.models import Hospitals, HospitalOwnership
-from .serializers import HospitalSerializer, HospitalOwnershipSerializer
+from project.api.models import Hospitals, HospitalOwnership, HospitalAddress, Address
+from .serializers import HospitalSerializer, HospitalOwnershipSerializer, AddressSerializer
 
 
 class HomeView(TemplateView):
@@ -62,3 +63,18 @@ class HospitalOwnershipView(generics.ListAPIView):
         hp_count = HospitalOwnership.objects.all().count()
         content = {'hp_count': hp_count}
         return Response(content)
+
+class AddressCountView(generics.ListAPIView):
+    
+    serializer_class    = AddressSerializer
+
+    def get(self, request):
+        add = Address.objects.all().values('county', 'state').annotate(total=Count('county'))
+        content = {}
+        for item in add:
+            content[item['county']] = {
+                'num_county': item['total']}
+        return Response(add)
+        #return queryset
+    
+

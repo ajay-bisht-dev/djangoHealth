@@ -5,16 +5,19 @@
     <title>{% block title %}{% endblock %}</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'api/css/bootstrap.min.css' %}">
-    <link rel="stylesheet" href="{% static 'api/css/style.scss' %}">
+    <link rel="stylesheet" href="{% static 'api/css/style.css' %}">
     <link href='http://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=EB+Garamond' rel='stylesheet' type='text/css'>
     <script>
-        var jurl = "{% static 'api/js/us-county-geo5.json' %}";
+        var jurl = "{% static 'api/data/us-county-topo.json' %}";
+        //var durl = "{% static 'api/data/unemployment.tsv' %}";
+        var nameValue = "{% static 'api/data/us-county-names.tsv' %}"
+        var durl = "get/hospital-address-count/";
     </script>
     {% block head %}{% endblock %}
 </head>
 <body class="body">
-    <div class="container">
+    <div class="container center">
         {% block content %}
         {% endblock %}
     </div>

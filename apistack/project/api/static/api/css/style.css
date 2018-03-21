@@ -15,6 +15,9 @@ body{
   text-align: center;
 	overflow: hidden;
 }
+.center{
+  text-align: center;
+}
 #intro{
   width: $w;
   border-bottom: 2px solid $gray;
@@ -33,6 +36,10 @@ h2{
   bottom: 0px;
   font: .75rem $font-stack;
 }
+.legend text{
+  font-weight:bold;
+  color: #F00;
+}
 #legend{
   position: absolute;
   right: 0;
@@ -46,20 +53,25 @@ h2{
   fill: none;
 }
 #map{
-  margin-top: 7rem;
+  /*margin-top: 7rem;*/
 }
 text {
   pointer-events: none;
   font: .75rem $font-stack;
 }
-.states {
+/*.states {
   fill: $gray;
-}
+}*/
 .states :hover {
-  stroke: $gray;
+  stroke: #000;
   stroke-width: 2.5px;
 }
-.place,
+/*.states {
+  fill: none;
+  stroke: #ef3b2c;
+  stroke-linejoin: round;
+}*/
+/*.place,
 .place-label {
 fill: $place-fill;
 }
@@ -68,59 +80,29 @@ fill: $place-fill;
   padding: 10px;
   background: $transparent;
   color: $tip-color;
+} */
+.bubble {
+  fill-opacity: .5;
+  stroke: #fff;
+  stroke-width: .5px;
 }
-h1, .d3-tip {
+.d3-tip {
         font-family: 'Quicksand', sans-serif;
-      }
+}
+p {
+  font-family: 'EB Garamond', serif;
+  font-size: 12px;
+}
 
-      #footer {
-        position: absolute;
-        top: 410px;
-        left:500px;
-      }
+text {
+  font-family: 'EB Garamond', serif;
+  font-size: 12px;
+  pointer-events: none;
+}
 
-      #legend {
-        position: absolute;
-      }
-
-      .axis path {
-        fill: none;
-      }
-
-      .states {
-        fill: #333;
-      }
-
-      .states :hover {
-        stroke: #333333;
-        stroke-width: 2.5px;
-      }
-
-      .place,
-      .place-label {
-        fill: #444;
-      }
-
-      p {
-        font-family: 'EB Garamond', serif;
-        font-size: 12px;
-      }
-
-      text {
-        font-family: 'EB Garamond', serif;
-        font-size: 12px;
-        pointer-events: none;
-      }
-
-      .d3-tip {
-        line-height: 1;
-        padding: 10px;
-        background: rgba(0, 0, 0, 0.7);
-        color: #e2e3e3;
-      }
-
-      .bubble {
-        fill-opacity: .5;
-        stroke: #fff;
-        stroke-width: .5px;
-      }
+.d3-tip {
+  line-height: 1;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.7);
+  color: #e2e3e3;
+}
