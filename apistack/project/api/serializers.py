@@ -51,6 +51,17 @@ class HospitalOwnershipSerializer(serializers.ModelSerializer):
             'ownership'
         ]
 
+class HospitalAddressSerializer(serializers.ModelSerializer):
+    hospital = HospitalSerializer()
+    address = AddressSerializer()
+
+    class Meta:
+        model = HospitalAddress
+        fields = [
+            'hospital',
+            'address'
+        ]
+    
 #class HospitalAddressSerializer(serializers.ModelSerializer):
 
     #hospital = serializers.ReadOnlyField(source='hospital.provider_id')

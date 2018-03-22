@@ -3,6 +3,7 @@ from django.views.generic import TemplateView
 from django.shortcuts import render, redirect
 from rest_framework.response import Response
 from rest_framework.renderers import JSONRenderer
+from django.db import connection
 
 # Create your views here.
 from django.contrib.auth.models import User
@@ -14,6 +15,14 @@ from rest_framework import generics
 from project.api.models import Hospitals, HospitalOwnership, HospitalAddress, Address
 from .serializers import HospitalSerializer, HospitalOwnershipSerializer, AddressSerializer
 
+def query_db(query, args=(), one=False):
+    cursor = connection.cursor()
+    cursor.execute(query, args)
+    r = [dict((cursor.description[i][0], value) \
+               for i, value in enumerate(row)) for row in cursor.fetchall()]
+    #cursor.connection.close()
+    
+    return (r[0] if r else None) if one else r
 
 class HomeView(TemplateView):
     template_name = 'api/home.html'
@@ -77,4 +86,28 @@ class AddressCountView(generics.ListAPIView):
         return Response(add)
         #return queryset
     
+class YelpHospitalRatingView(generics.ListAPIView):
+    queryset = ''
+    def get(self, request):
+        query = """SELECT a.`state` as state, a.`county` as county, ROUND(AVG(hy.`rating`), 1) as rating, COUNT(*) as count
+        FROM `yelp_hosp_info` hy
+        JOIN `hospital_address` ha ON ha.`hospital_id` = hy.`hospital_id`
+        JOIN `address` a ON a.`id` = ha.`address_id`
+        WHERE a.`county` != ''
+        GROUP BY a.`county`, a.`state`"""
+        #cursor = connection.cursor()
+        #cursor.execute("""SELECT a.`state` as state, a.`county` as county, ROUND(AVG(hy.`rating`), 2) as rating, COUNT(*) as count
+        #FROM `yelp_hosp_info` hy
+        #JOIN `hospital_address` ha ON ha.`hospital_id` = hy.`hospital_id`
+        #JOIN `address` a ON a.`id` = ha.`address_id`
+        #WHERE a.`county` != ''
+        #GROUP BY a.`county`, a.`state`""")
+        #row = cursor.fetchall()
+
+        #res = {}
+        #for item in row:
+        #    res[]
+        res = query_db(query)
+
+        return Response(res)
 
